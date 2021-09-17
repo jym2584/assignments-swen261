@@ -189,6 +189,7 @@ public class PostGuessRoute implements Route {
     playerServices.finishedGame();
     // report application-wide game statistics
     vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
+    vm.put(GetHomeRoute.GAMES_WON_ATTR, gameCenter.getWonStatsMessage()); // forgot to add this 
     vm.put(YOU_WON_ATTR, youWonLost);
     return new ModelAndView(vm, GetHomeRoute.VIEW_NAME);
   }
