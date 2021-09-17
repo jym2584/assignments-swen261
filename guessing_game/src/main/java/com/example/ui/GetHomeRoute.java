@@ -86,7 +86,7 @@ public class GetHomeRoute implements Route {
 
     // report application-wide game statistics
     vm.put(GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
-    vm.put(GAMES_WON_ATTR, gameCenter.getWonStatsMessage()); // Not sure why this isn't working
+    vm.put(GAMES_WON_ATTR, gameCenter.getWonStatsMessage()); // Works!
 
     // if this is a brand new browser session or a session that timed out
     if(httpSession.attribute(PLAYERSERVICES_KEY) == null) {
