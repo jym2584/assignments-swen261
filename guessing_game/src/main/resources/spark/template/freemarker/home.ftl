@@ -14,7 +14,7 @@
         ${gameStatsMessage}
       </p>
         <p>
-        ${gamesWonStats!'whynowork'}
+        ${gamesWonStats}
         </p>
 
       <p>
