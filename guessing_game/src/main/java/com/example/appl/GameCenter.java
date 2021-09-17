@@ -105,7 +105,7 @@ public class GameCenter {
    */
   public synchronized String getWonStatsMessage() {
     if (gamesWon > 0) {
-      return String.format(WON_STATS, gamesWon);
+      return String.format(WON_STATS, gamesWon * 100 / totalGames);
     }
     return WON_STATS_NONE;
   }
