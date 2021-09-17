@@ -32,6 +32,7 @@ public class GetHomeRoute implements Route {
   static final String NEW_PLAYER_ATTR = "newPlayer";
   static final String TITLE = "Welcome to the Guessing Game";
   static final String VIEW_NAME = "home.ftl";
+  static final String GAMES_WON_ATTR = "gamesWonStats";
 
   // Key in the session attribute map for the player who started the session
   static final String PLAYERSERVICES_KEY = "playerServices";
@@ -85,6 +86,7 @@ public class GetHomeRoute implements Route {
 
     // report application-wide game statistics
     vm.put(GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
+    vm.put(GAMES_WON_ATTR, gameCenter.getWonStatsMessage()); // Not sure why this isn't working
 
     // if this is a brand new browser session or a session that timed out
     if(httpSession.attribute(PLAYERSERVICES_KEY) == null) {

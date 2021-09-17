@@ -24,12 +24,16 @@ public class GameCenter {
   public final static String ONE_GAME_MESSAGE = "One game has been played so far.";
   public final static String GAMES_PLAYED_FORMAT = "There have been %d games played.";
 
+  // Enhancement 1, Adding global game stats
+  public final static String WON_STATS = "Players have won %d%% of the games played";
+  public final static String WON_STATS_NONE = "Percentage statistics will be displayed once a game has been played.";
+
   //
   // Attributes
   //
 
   private int totalGames = 0;
-
+  private int gamesWon = 0;
   //
   // Constructors
   //
@@ -71,6 +75,15 @@ public class GameCenter {
   }
 
   /**
+   * Collect statistics about games currently won
+   */
+  public void gameWon() {
+    synchronized (this) {
+      gamesWon++;
+    }
+  }
+
+  /**
    * Get a user message about the sitewide statistics.
    *
    * @return
@@ -85,4 +98,18 @@ public class GameCenter {
       return NO_GAMES_MESSAGE;
     }
   }
+
+  /**
+   *  Gets global game stats out of all games
+   * @return
+   */
+  public synchronized String getWonStatsMessage() {
+    if (gamesWon > 0) {
+      return String.format(WON_STATS, gamesWon);
+    }
+    return WON_STATS_NONE;
+  }
+
+
+
 }

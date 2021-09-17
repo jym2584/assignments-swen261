@@ -72,6 +72,12 @@ public class PlayerServices {
     GuessResult result = game.makeGuess(guess);
     if (game.isFinished()) {
         gameCenter.gameFinished();
+
+        // Additional check if the finished game resulted in a win
+        if (result == GuessGame.GuessResult.WON) {
+          gameCenter.gameWon();
+        }
+
     }
     return result;
   }
@@ -99,6 +105,14 @@ public class PlayerServices {
    */
   public boolean hasMoreGuesses() {
     return game.hasMoreGuesses();
+  }
+
+    /**
+   * How far off the is guess from the actual
+   * @return false for lower, true for higher
+   */
+  public synchronized boolean estimateGuess(int guess) {
+    return game.estimateGuess(guess);
   }
 
   /**

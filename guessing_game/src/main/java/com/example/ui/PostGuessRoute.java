@@ -35,7 +35,8 @@ public class PostGuessRoute implements Route {
   static final String YOU_WON_ATTR = "youWon";
 
   static final String ERROR_TYPE = "error";
-  static final String BAD_GUESS = "Nope, try again...";
+  static final String BAD_GUESS_HIGHER = "The number is higher than your guess";
+  static final String BAD_GUESS_LOWER = "The number is lower than your guess";
   static final String VIEW_NAME = "game_form.ftl";
 
   //
@@ -136,7 +137,11 @@ public class PostGuessRoute implements Route {
 
         case WRONG:
           vm.put(GetGameRoute.GUESSES_LEFT_ATTR, playerServices.guessesLeft());
-          mv = error(vm, BAD_GUESS);
+          if (playerServices.estimateGuess(guess)) {
+            mv = error(vm, BAD_GUESS_HIGHER);
+          } else {
+            mv = error(vm, BAD_GUESS_LOWER);
+          }
           break;
 
         case WON:

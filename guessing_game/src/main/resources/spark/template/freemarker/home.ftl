@@ -13,6 +13,11 @@
       <p>
         ${gameStatsMessage}
       </p>
+        <p>
+        ${gamesWonStats!'whynowork'}
+        </p>
+
+      <p>
       
       <#if newPlayer>
         <p>

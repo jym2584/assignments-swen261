@@ -164,6 +164,14 @@ public class GuessGame {
   }
 
   /**
+   * How far off the is guess from the actual
+   * @return false for lower, true for higher
+   */
+  public synchronized boolean estimateGuess(int guess) {
+    return guess < numberToGuess;
+  }
+
+  /**
    * {@inheritDoc}
    */
   @Override
