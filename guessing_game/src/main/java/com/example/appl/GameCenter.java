@@ -31,7 +31,6 @@ public class GameCenter {
   //
   // Attributes
   //
-
   private int totalGames = 0;
   private int gamesWon = 0;
   //

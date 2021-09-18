@@ -29,6 +29,8 @@ public class PlayerServices {
   private GuessGame game;
   // The gameCenter provides sitewide features for all the games and players.
   private final GameCenter gameCenter;
+
+  // Get personal (not global) statistics for the player playing the game
   private int personalGamesWon;
   private int gamesPlayed;
   /**
@@ -75,12 +77,12 @@ public class PlayerServices {
     GuessResult result = game.makeGuess(guess);
     if (game.isFinished()) {
         gameCenter.gameFinished();
-        gamesPlayed++;
+        gamesPlayed++; // increment games played for the individual player in the current session
 
         // Additional check if the finished game resulted in a win
         if (result == GuessGame.GuessResult.WON) {
           gameCenter.gameWon();
-          personalGamesWon++;
+          personalGamesWon++; // increment games won for the individual player
         }
 
     }
@@ -120,20 +122,15 @@ public class PlayerServices {
     return game.estimateGuess(guess);
   }
 
+  /**
+   * Get personal statistics of the player playing the game
+   * @return
+   */
   public String getPersonalStats() {
     if (personalGamesWon == 0) {
       return NO_WINS_MESSAGE;
     } 
       return String.format(GAMES_PLAYED_FORMAT, personalGamesWon * 100 / gamesPlayed, gamesPlayed);
-  }
-
-
-  public int getPersonalGamesWon() {
-      return personalGamesWon;
-  }
-
-  public int getGamesPlayed() {
-      return gamesPlayed;
   }
 
   /**
