@@ -24,6 +24,9 @@
           <a href="/game">Want to play a game?!?</a>
         </p>
       <#else>
+      <h3>Personal Statistics</h3>
+        <p>${personalStats!'No worky'}</p>
+        <h4>Result</h4>
         <#if youWon>
           <p>
             Congratulations!  You must have read my mind.

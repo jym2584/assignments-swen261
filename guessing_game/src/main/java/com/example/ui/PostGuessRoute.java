@@ -33,6 +33,7 @@ public class PostGuessRoute implements Route {
   static final String MESSAGE_ATTR = "message";
   static final String MESSAGE_TYPE_ATTR = "messageType";
   static final String YOU_WON_ATTR = "youWon";
+  static final String PERSONAL_STATS = "personalStats";
 
   static final String ERROR_TYPE = "error";
   static final String BAD_GUESS_HIGHER = "The number is higher than your guess";
@@ -56,7 +57,6 @@ public class PostGuessRoute implements Route {
   static String makeInvalidArgMessage(final String guessStr) {
     return String.format("You entered %s; make a guess between zero and nine.", guessStr);
   }
-
   //
   // Attributes
   //
@@ -191,6 +191,7 @@ public class PostGuessRoute implements Route {
     vm.put(GetHomeRoute.GAME_STATS_MSG_ATTR, gameCenter.getGameStatsMessage());
     vm.put(GetHomeRoute.GAMES_WON_ATTR, gameCenter.getWonStatsMessage()); // forgot to add this 
     vm.put(YOU_WON_ATTR, youWonLost);
+    vm.put(PERSONAL_STATS, playerServices.getPersonalStats());
     return new ModelAndView(vm, GetHomeRoute.VIEW_NAME);
   }
 }

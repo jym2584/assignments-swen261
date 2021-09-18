@@ -19,7 +19,7 @@ public class PlayerServices {
   //
 
   final static String NO_WINS_MESSAGE = "You have not won a game, yet. But I *feel* your luck changing.";
-  final static String GAMES_PLAYED_FORMAT = "You have won an average of %.1f%% of this session's %d game.";
+  final static String GAMES_PLAYED_FORMAT = "You have won an average of %d%% of this session's game number %d.";
 
   //
   // Attributes
@@ -29,7 +29,8 @@ public class PlayerServices {
   private GuessGame game;
   // The gameCenter provides sitewide features for all the games and players.
   private final GameCenter gameCenter;
-
+  private int personalGamesWon;
+  private int gamesPlayed;
   /**
    * Construct a new {@Linkplain PlayerServices} but wait for the player to want to start a game.
    *
@@ -39,6 +40,8 @@ public class PlayerServices {
   PlayerServices(GameCenter gameCenter) {
     game = null;
     this.gameCenter = gameCenter;
+    personalGamesWon = 0;
+    gamesPlayed = 0;
   }
 
   /**
@@ -72,10 +75,12 @@ public class PlayerServices {
     GuessResult result = game.makeGuess(guess);
     if (game.isFinished()) {
         gameCenter.gameFinished();
+        gamesPlayed++;
 
         // Additional check if the finished game resulted in a win
         if (result == GuessGame.GuessResult.WON) {
           gameCenter.gameWon();
+          personalGamesWon++;
         }
 
     }
@@ -113,6 +118,22 @@ public class PlayerServices {
    */
   public synchronized boolean estimateGuess(int guess) {
     return game.estimateGuess(guess);
+  }
+
+  public String getPersonalStats() {
+    if (personalGamesWon == 0) {
+      return NO_WINS_MESSAGE;
+    } 
+      return String.format(GAMES_PLAYED_FORMAT, personalGamesWon * 100 / gamesPlayed, gamesPlayed);
+  }
+
+
+  public int getPersonalGamesWon() {
+      return personalGamesWon;
+  }
+
+  public int getGamesPlayed() {
+      return gamesPlayed;
   }
 
   /**
