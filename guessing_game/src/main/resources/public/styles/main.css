@@ -1,7 +1,8 @@
 body {
-    background: #CAECFF;
+    background: #181a1b;
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 14px;
+    color:#ccc
 }
 
 a {
@@ -13,7 +14,7 @@ a:hover {
 }
 
 input[type="text"] {
-    background: white;
+    background: #3b0b0b;
     border: 1px solid #BFE6FF;
     padding: 2px;
     font-family: 'Trebuchet MS', sans-serif;
@@ -32,7 +33,7 @@ input[type="submit"] {
     font-weight: bold;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    color: white;
+    color: #181a1b;
 }
 
 div.page {
@@ -72,8 +73,8 @@ div.message {
     font-size: 13px;
 }
 div.message.error {
-    background: #FAE4E4;
-    border: 1px solid #DD6F6F;
+    background: #3b0b0b;
+    border: 1px solid #7e1e1e;
 }
 
 div.message.success {
